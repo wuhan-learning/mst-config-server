@@ -5,6 +5,8 @@ services:
     tty: true
     expose:
      - "9999"
+    ports:
+     - "9999:9999"
     environment:
         SPRING_PROFILES_ACTIVE: qa
         DB_HOST: 10.202.129.3
