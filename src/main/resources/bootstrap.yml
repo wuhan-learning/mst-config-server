@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: ${ACTIVE_PROFILE:local}
+  application:
+    name: mst-config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/tw-ms-training/mst-config-storage.git
+          clone-on-start: true
+          search-paths: '{application}'
+          host-key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqAiyCU8CrYYu0pAo25Sv+U4BOFk4N0sdyzhGfbWarJvqqJrmFZDabIDeR9Ob9NT5HLljLGpjYcZ02107lvQ25aci3UIlr+SyfS0pPX6Ml0LkRm1pSulAGNpJ3Y2ldywvhbJet0wpaQAEuHCXL0CjURQsI0Y6P2JwQxgDAJunRT0EP6Tk78WhpFRfSuQdVu+9iekudS6Pkl/3OIZXSlvsUiYOwOP8sJrve1ahw9zuWOs3KXBPsOjpkadUu2tC231jHSeBl+dCJxw86nov888gKHtLVUjkdOgKsMRzX6lxFJANaB1O0X0mOMft80YSqt9gEtRQrCP6HJ3Q3SCX6zoLD sjyuan@thoughtworks.com
+          repos:
+            none_prod:
+              pattern:
+                - '*/qa'
+                - '*/uat'
+              uri: https://github.com/tw-ms-training/mst-config-storage.git
+              searchPaths: '{application}'
+            prod:
+              pattern:
+                - '*/prod'
+              uri: https://github.com/tw-ms-training/mst-config-storage.git
+              searchPaths: '{application}'
+    consul:
+      enabled: true
+      host: ${CONSUL_HOST:127.0.0.1}
+      port: 8500
+      discovery:
+        enabled: true
+        register: true
